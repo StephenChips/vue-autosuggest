@@ -446,7 +446,6 @@ export default {
 
       const ignoredKeyCodes = [
         16, // Shift
-        9,  // Tab
         17, // ctrl
         18, // alt/option
         91, // OS Key
@@ -462,6 +461,11 @@ export default {
       this.didSelectFromOptions = false;
       if (this.isOpen) {
         switch (keyCode) {
+          case 9: // Tab
+            // The autocomplete will blur out after we press <tab>.
+            // The suggestion list should be closed at the same time. 
+            this.loading = true;
+            break;
           case 40: // ArrowDown
           case 38: // ArrowUp
             e.preventDefault();
